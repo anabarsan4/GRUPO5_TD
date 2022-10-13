@@ -3,4 +3,6 @@
 • Cada miembro del grupo tendrá que crear un enunciado diferente de un problema en el
 que lo resuelva empleando todos los métodos de incertidumbre.
 ## Día 11/10/2022
-Quedamos tras la clase para organizarnos.
+**Quedamos tras la clase para organizarnos.** <br>
+• Mandamos un correo al profesor para saber exactamente qué hacer.<br>
+• Repartimos de manera equitativa e individual las funciones del fichero para documentarlas.
