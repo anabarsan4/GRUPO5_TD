@@ -5,4 +5,6 @@ que lo resuelva empleando todos los métodos de incertidumbre.
 ## Día 11/10/2022
 **Quedamos tras la clase para organizarnos.** <br>
 • Mandamos un correo al profesor para saber exactamente qué hacer.<br>
+## Día 13/10/2022
 • Repartimos de manera equitativa e individual las funciones del fichero para documentarlas.
+    • **Cristina Tobar Fernández :** "criterio.Hurwicz" "criterio.PuntoIdeal"
