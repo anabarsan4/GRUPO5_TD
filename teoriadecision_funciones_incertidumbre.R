@@ -126,8 +126,32 @@ criterio.Optimista = function(tablaX,favorable=TRUE) {
 
 
 ## factor de optimismo   (alfab * "lo mejor" Altmax en favor. y Altmin en desf.)
+
 criterio.Hurwicz = function(tablaX,alfa=0.3,favorable=TRUE) {
-  # alfa es un escalar entre 0 y 1 lo obtiene para ese único valor
+  #' Esta función aplica el Criterio de Hurwich. Dicho criterio combina actitudes
+  #' pesimistas y optimistas. Pondera la mejor opción por un "factor de optimismo"
+  #' alfa. La dificultad de este método está en estimar el alfa del decisor. 
+  #' Por ello y como veremos más adelante, se ha introducido este factor como 
+  #' dato dado (o de entrada)
+  # ENTRADA: ###################################################################
+  #   tablaX: Matriz donde se exponen, por filas, los "beneficios" o "costes" de 
+  #            cada decisión, según la alternativa.
+  #   alfa:   Es un escalar entre 0 y 1. Es el grado de optimismo que tenemos a la 
+  #            hora de decidir
+  #   favorable: Booleano. TRUE si es una matriz de beneficios, FALSE si lo es 
+  #               de costes
+  # SALIDA: ####################################################################
+  #       La función nos devuelve una lista, con:
+  #        criterio: En este caso siempre nos devolverá 'Hurwicz'
+  #        alfa: El nivel parea el cual se ha aplicado el criterio Hurwicz
+  #        metodo:Si se ha tomado la matriz de entrada como favorable(beneficios)
+  #                o como desfavorable (costes)
+  #        tablaX:La matriz de entrada.
+  #        ValorAlternativas: Valor asignado a cada alternativa para nuestro nivel
+  #                           de optimismo
+  #        ValorOptimo: Valor óptimo entre todas las alternativas.
+  #        AlternativaOptima: Alternativa donde se alcanza dicho valor óptimo.
+  ##############################################################################
   X = tablaX;
   if (favorable) {
     Altmin = apply(X,MARGIN=1,min);
