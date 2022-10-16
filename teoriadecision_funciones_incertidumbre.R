@@ -502,6 +502,26 @@ criterio.Laplace = function(tablaX,favorable=TRUE) {
 
 
 criterio.PuntoIdeal = function(tablaX,favorable=TRUE) {
+  #' Esta función aplica el Criterio del Punto Ideal. Dicho criterio mide la 
+  #' distancia entre el punto ideal (el que toma los mejores valores posibles
+  #' en todas sus coordenadas) y los puntos definidos por nuestras alternativas.
+  # ENTRADA: ###################################################################
+  #   tablaX: Matriz donde se exponen, por filas, los "beneficios" o "costes" de 
+  #            cada decisión, según la alternativa.
+  #   favorable: Booleano. TRUE si es una matriz de beneficios, FALSE si lo es 
+  #               de costes
+  # SALIDA: ####################################################################
+  #       La función nos devuelve una lista, con:
+  #        criterio: En este caso siempre nos devolverá 'Punto Ideal'
+  #        metodo:Si se ha tomado la matriz de entrada como favorable(beneficios)
+  #                o como desfavorable (costes)
+  #        tablaX:La matriz de entrada.
+  #        Mejores:Las coordenadas de nuestro Punto Ideal.
+  #        ValorAlternativas: Distancia de cada alternativa a nuestro punto ideal.
+  #        ValorOptimo: Minima distancia o valor óptimo entre todas las alternativas.
+  #        AlternativaOptima: Alternativa más cercana al punto ideal, 
+  #                           donde se alcanza dicho valor óptimo de las distancias.
+  ##############################################################################
 
   X = tablaX;
   if (favorable) {
