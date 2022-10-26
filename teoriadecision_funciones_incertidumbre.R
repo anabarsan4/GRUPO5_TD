@@ -612,6 +612,7 @@ criterio.Todos = function(tablaX,alfa=0.3,favorable=TRUE) {
   return(resultado)
 }
 
+
 criterio.Todos.mejorado = function(tablaX,alfa=0.3,favorable=TRUE) {
   cri01 = criterio.Wald(tablaX,favorable);
   cri02 = criterio.Optimista(tablaX,favorable);
@@ -636,7 +637,7 @@ criterio.Todos.mejorado = function(tablaX,alfa=0.3,favorable=TRUE) {
   altop= cbind(altop,cri05$AlternativaOptima)
   altop= cbind(altop,cri06$AlternativaOptima)
   t=table(altop)
-  return(t[1]) # Nos devuelve la más frecuente y cuantas veces se repite esta
+  return(t) # Nos devuelve la más frecuente y cuantas veces se repite esta
   
 }
   
