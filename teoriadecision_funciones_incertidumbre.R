@@ -610,7 +610,39 @@ criterio.Todos = function(tablaX,alfa=0.3,favorable=TRUE) {
   ## fin nuevo
 
   return(resultado)
-
 }
 
-
+criterio.Todos.mejorado = function(tablaX,alfa=0.3,favorable=TRUE) {
+  cri01 = criterio.Wald(tablaX,favorable);
+  cri02 = criterio.Optimista(tablaX,favorable);
+  cri03 = criterio.Hurwicz(tablaX,alfa,favorable);
+  cri04 = criterio.Savage(tablaX,favorable);
+  cri05 = criterio.Laplace(tablaX,favorable);
+  cri06 = criterio.PuntoIdeal(tablaX,favorable);
+  
+  numestados = ncol(tablaX)
+  numalterna = nrow(tablaX)
+  ## CREAMOS UNA TABLA CON LOS RESULTADOS:
+  # Ponemos una matriz a la cual le añadiremos nombre a las filas y a las columnas
+  
+  
+  
+  # Ahora iremos probando cómo ver la alternativa mayoritariamente optima.
+  # Las alternativas óptimas son : 
+  altop=c(cri01$AlternativaOptima)
+  altop= cbind(altop,cri02$AlternativaOptima)
+  altop= cbind(altop,cri03$AlternativaOptima)
+  altop= cbind(altop,cri04$AlternativaOptima)
+  altop= cbind(altop,cri05$AlternativaOptima)
+  altop= cbind(altop,cri06$AlternativaOptima)
+  t=table(altop)
+  return(t[1]) # Nos devuelve la más frecuente y cuantas veces se repite esta
+  
+}
+  
+############## PRUEBA CRITERIO.TODOS.MEJORADO ################################
+tb01a=crea.tablaX(c(5,4,6,
+                    2,3,1,
+                    -1,8,7,
+                    5,2,0),numalternativas = 4,numestados = 3)
+criterio.Todos.mejorado(tb01a)
