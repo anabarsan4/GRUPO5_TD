@@ -13,4 +13,11 @@ que lo resuelva empleando todos los métodos de incertidumbre.
 • Mandamos un correo al profesor para saber exactamente qué hacer.<br>
 ## Día 13/10/2022
 • Repartimos de manera equitativa e individual las funciones del fichero para documentarlas.<br>
-    • **Cristina Tobar Fernández :** "criterio.Hurwicz" "criterio.PuntoIdeal"
+    • **Cristina Tobar Fernández :** "criterio.Hurwicz" "criterio.PuntoIdeal"<br>
+    • **Ana Barroso Sánchez :**              <br>
+    • **Jesús Manuel Falcón García :**       <br>
+    • **Sebastián León Díaz :**              <br>
+    • **Sofía Muñoz Márquez :**              <br>
+    
+## Día 29/10/2022
+• Primera versión de añadir la columna de la mejor opción teniendo en cuenta todos los criterios.
