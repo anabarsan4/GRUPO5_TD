@@ -620,13 +620,20 @@ criterio.Todos.mejorado = function(tablaX,alfa=0.3,favorable=TRUE) {
   cri04 = criterio.Savage(tablaX,favorable);
   cri05 = criterio.Laplace(tablaX,favorable);
   cri06 = criterio.PuntoIdeal(tablaX,favorable);
-  
-  numestados = ncol(tablaX)
-  numalterna = nrow(tablaX)
   ## CREAMOS UNA TABLA CON LOS RESULTADOS:
   # Ponemos una matriz a la cual le añadiremos nombre a las filas y a las columnas
   
+  numestados = ncol(tablaX)
+  numalterna = nrow(tablaX)
   
+  resultado = cbind(tablaX,cri01$ValorAlternativas,cri02$ValorAlternativas,
+                    cri03$ValorAlternativas,cri04$ValorAlternativas,
+                    cri05$ValorAlternativas,cri06$ValorAlternativas);
+  
+  decopt = c(rep(" ",numestados),cri01$AlternativaOptima[1],
+             cri02$AlternativaOptima[1],cri03$AlternativaOptima[1],
+             cri04$AlternativaOptima[1],cri05$AlternativaOptima[1],
+             cri06$AlternativaOptima[1]);
   
   # Ahora iremos probando cómo ver la alternativa mayoritariamente optima.
   # Las alternativas óptimas son : 
@@ -637,8 +644,23 @@ criterio.Todos.mejorado = function(tablaX,alfa=0.3,favorable=TRUE) {
   altop= cbind(altop,cri05$AlternativaOptima)
   altop= cbind(altop,cri06$AlternativaOptima)
   t=table(altop)
-  return(t) # Nos devuelve la más frecuente y cuantas veces se repite esta
   
+  resultado = rbind(resultado,decopt);
+  resultado = cbind(resultado,c(which.max(t),rep(" ",numestados+1)))
+  
+  library(kableExtra)
+  # Veamos los elelementos de la tabla para poner nombre a las columnas
+  colnames(resultado)[numestados+1] = cri01$criterio;
+  colnames(resultado)[numestados+2] = cri02$criterio;
+  colnames(resultado)[numestados+3] = cri03$criterio;
+  colnames(resultado)[numestados+4] = cri04$criterio;
+  colnames(resultado)[numestados+5] = cri05$criterio;
+  colnames(resultado)[numestados+6] = cri06$criterio;
+  colnames(resultado)[numestados+7] = "MEJOR DECICIÓN"
+  
+  return(knitr::kable(resultado)%>%
+           kable_styling(font_size = 8)) 
+  return(c("La mejor optción es ",which.max(t)))
 }
   
 ############## PRUEBA CRITERIO.TODOS.MEJORADO ################################
@@ -647,3 +669,4 @@ tb01a=crea.tablaX(c(5,4,6,
                     -1,8,7,
                     5,2,0),numalternativas = 4,numestados = 3)
 criterio.Todos.mejorado(tb01a)
+
