@@ -658,9 +658,15 @@ criterio.Todos.mejorado = function(tablaX,alfa=0.3,favorable=TRUE) {
   colnames(resultado)[numestados+6] = cri06$criterio;
   colnames(resultado)[numestados+7] = "MEJOR DECICIÓN"
   
+  # Veamos el título de la tabla
+  # if (favorable=T) {titulo =} else {}
+  
   return(knitr::kable(resultado)%>%
-           kable_styling(font_size = 8)) 
-  return(c("La mejor optción es ",which.max(t)))
+           kable_styling(font_size = 8)%>%
+           add_header_above(font_size = "medium", 
+                            c(" " =1, "Tabla de entrada" = numestados, "Criterios" = 6, " " = 1)) %>%
+           row_spec(numalterna+1, color = 'white', background = 'black') %>%
+           column_spec(1, color = 'white', background = 'black')) 
 }
   
 ############## PRUEBA CRITERIO.TODOS.MEJORADO ################################
