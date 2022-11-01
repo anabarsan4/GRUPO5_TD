@@ -661,12 +661,13 @@ criterio.Todos.mejorado = function(tablaX,alfa=0.3,favorable=TRUE) {
   # Veamos el título de la tabla
   # if (favorable=T) {titulo =} else {}
   
-  return(knitr::kable(resultado)%>%
-           kable_styling(font_size = 8)%>%
+  return(knitr::kable(resultado, booktabs = TRUE)%>%
+           kable_styling(font_size = 10,bootstrap_options = c("striped", "hover"))%>%
            add_header_above(font_size = "medium", 
-                            c(" " =1, "Tabla de entrada" = numestados, "Criterios" = 6, " " = 1)) %>%
-           row_spec(numalterna+1, color = 'white', background = 'black') %>%
-           column_spec(1, color = 'white', background = 'black')) 
+                            c(" " =1, "Tabla de entrada" = numestados, "Criterios" = 6, " " = 1),
+                            color = 'white', background = '#698B69') %>%
+           row_spec(numalterna+1, color = 'white', background = '#8FBC8F') %>%
+           column_spec(1, color = 'white', background = '#8FBC8F')) 
 }
   
 ############## PRUEBA CRITERIO.TODOS.MEJORADO ################################
