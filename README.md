@@ -29,5 +29,5 @@ que lo resuelva empleando todos los métodos de incertidumbre.
 • Primera versión de añadir la columna de la mejor opción teniendo en cuenta todos los criterios.
     
 ### Día 01/11/2022
-• Nueva versión de añadir la columna, mejorando la estética.
-• Creación del documento vignette.
+• Nueva versión de añadir la columna, mejorando la estética.<br>
+• Creación del documento vignette.<br>
