@@ -61,33 +61,39 @@ criterio.tablaX.ejemplos = function(cual=1) {
 ## Funciones Métodos de Decisión bajo Incertidumbre ----
 
 ## Criterio de Wald o Pesimista
-criterio.Wald = function(tablaX,favorable=TRUE) {
+#En este criterio supondremos que para cada alternativa va a pasar lo peor
+#Elegiremos aquella alternativa que dé mejor valor.
+#Aseguramos que en el peor de los casos escogemos lo mejor.
 
+criterio.Wald = function(tablaX,favorable=TRUE) {
+  
   X = tablaX;
-  if (favorable) {
-    AltW = apply(X,MARGIN=1,min);
+  if (favorable) { # BENEFICIOS
+    AltW = apply(X,MARGIN=1,min); # calculo el mínimo por filas
     ##AltW
-    Wald = max(AltW);
-    Alt_Wald = which.max.general(AltW);
+    Wald = max(AltW); # nos quedamos con el máximo (sería la peor decision)
+    Alt_Wald = which.max.general(AltW); # para saber a que decisión corresponde, es decir, en qué indice se alcanza el máximo
     metodo = 'favorable';
-  } else {
+    
+  } else { # COSTOS
     AltW = apply(X,MARGIN=1,max);
     ##AltW
     Wald = min(AltW);
     Alt_Wald = which.min.general(AltW);
     metodo = 'desfavorable';
   }
-  resultados = list();
+  
+  # Lo que queremos que devuelva
+  resultados = list(); # utilizo una lista para devolver varias cosas
   resultados$criterio = 'Wald';
   resultados$metodo = metodo;
-  resultados$tablaX = tablaX;
+  resultados$tablaX = tablaX; # tabla de valoraciones
   resultados$ValorAlternativas = AltW;
   resultados$ValorOptimo = Wald;
   resultados$AlternativaOptima = Alt_Wald;
-
+  
   return(resultados);
-
-
+  
 }
 
 
@@ -429,8 +435,20 @@ dibuja.criterio.Hurwicz_Intervalos = function(tablaX,favorable=TRUE,mostrarGrafi
 
 
 
-## Savage
+## Criterio Savage
 
+#Este criterio toma en consideración el coste de oportunidad
+#o penalización o arrepentimietno por no prever correctamente
+#el estado de la naturaleza. Estos costes de oportunidad se evaluarán
+#para cada alternativa y cada estado, haciendo la diferencia entre
+#lo mejor de ese estado y lo que proporciona esa alternativa para ese estado
+#contruyendo una matriz de penalizaciones. -sobre esta matriz se 
+#aplicarán los criterios anteriores, el más habittual es el criterio
+#minmax,  criterio de minimizar el maximo arrepentimiento.
+
+#En la práctica:
+# en el caso de los costos calcula el mín por columnas
+# crea una matriz de penalizaciones a la que le aplicamos el metodo pesimista
 criterio.Savage = function(tablaX,favorable=TRUE) {
 
   X = tablaX;
@@ -456,8 +474,8 @@ criterio.Savage = function(tablaX,favorable=TRUE) {
     Alt_Savage = which.min.general(AltWS);
     metodo = 'desfavorable';
   }
-  resultados = list();
-  resultados$criterio = 'Savage';
+  resultados = list(); #Hacemos una lista
+  resultados$criterio = 'Savage'; #decimos el criterio que queremos
   resultados$metodo = metodo;
   resultados$tablaX = tablaX;
   resultados$Mejores = Mejores;
