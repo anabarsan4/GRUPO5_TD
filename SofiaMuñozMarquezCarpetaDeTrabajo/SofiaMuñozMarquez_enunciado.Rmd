@@ -3,6 +3,7 @@ title: "Enunciado Trabajo Tema 1"
 author: "Sofía Muñoz"
 date: "2022-11-02"
 output: pdf_document
+output: html_document
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
