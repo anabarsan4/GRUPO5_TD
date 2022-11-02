@@ -23,11 +23,11 @@ que lo resuelva empleando todos los métodos de incertidumbre.
     • **Ana Barroso Sánchez :**              <br>
     • **Jesús Manuel Falcón García :**       <br>
     • **Sebastián León Díaz :**              <br>
-    • **Sofía Muñoz Márquez :**              <br>
+    • **Sofía Muñoz Márquez :**   "criterio de Wald"            "criterio Savage" <br>
     
 ### Día 29/10/2022
 • Primera versión de añadir la columna de la mejor opción teniendo en cuenta todos los criterios.
     
 ### Día 01/11/2022
-• Nueva versión de añadir la columna, mejorando la estética.
-• Creación del documento vignette.
+• Nueva versión de añadir la columna, mejorando la estética.<br>
+• Creación del documento vignette.<br>
