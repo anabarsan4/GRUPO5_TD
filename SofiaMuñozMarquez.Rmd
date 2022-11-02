@@ -1,0 +1,77 @@
+---
+title: "Enunciado Trabajo Tema 1"
+author: "Sofía Muñoz"
+date: "2022-11-02"
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+source("teoriadecision_funciones_incertidumbre.R", encoding = "UTF-8")
+```
+
+Un empresario quiere decidir qué tipo de ropa superpuesta (chaquetón, chaqueta vaquera y chaqueta fina) fabricar para el año próximo, teniendo en cuenta que a lo largo del año pasamos por tres estados de temperatura (Frío, Normal, Cálido).
+Tiene las siguientes opciones:
+
+• Chaquetón (plumas), los beneficios depende de la temperatura, si la temperatura es fría obtendrá aproximadamente 150000€, si es normal 6000€ y si es cálida, los beneficios disminuirán a 2000€ (Siempre hay gente que compra en verano cahquetones)
+
+• Chaqueta vaquera, si la temperatura es fría obtendrá aproximadamente 6000€, si es normal 120000€ y si es cálida 5000€
+
+• Chaqueta fina, si la temperatura es fría obtendrá una pérdida de 3000€, si es normal los beneficios serán 7500€ y si es cálida 90000€
+
+¿Qué tipo de chaqueta le recomendarías si su objetivo es maximizar los beneficios?
+
+**Planteamiento**
+
+-   Un decisor
+
+-   Modelo de beneficios (favorable)
+
+-   Alternativas:
+
+    -   d1 = "chaquetón (plumas)"
+
+    -   d2 = "chaqueta vaquera"
+
+    -   d3 = "chaqueta fina"
+
+-   Estados de la naturaleza:
+
+    -   e1 = "frío"
+
+    -   e2 = "normal"
+
+    -   e3 = "cálido"
+
+**Introducción de datos**
+
+```{r}
+tbSofia = crea.tablaX(c(60,15,2.5,
+                        5,30,10,
+                        -5,7.5,50), numalternativas = 3, numestados = 3)
+
+colnames(tbSofia)=c('Frío','Normal','Cálido')
+rownames(tbSofia)=c('Chaquetón (plumas)','Chaqueta vaquera','Chaqueta fina')
+
+tbSofia
+```
+
+**Solución**
+```{r}
+criterio.Todos(tbSofia, alfa=0.3,favorable = TRUE)
+```
+
+Según el criterio de Wald la mejor alternativa es la 2 (Chaqueta vaquera), y según los demás
+criterios la mejor alternativa es la 1 (Chaquetón (plumas)).
+
+Veamos ahora como varía el criterio de Hurwicz para los diferentes valores de alfa:
+
+```{r}
+dibuja.criterio.Hurwicz(tbSofia,favorable=TRUE)
+```
+
+
+
+
