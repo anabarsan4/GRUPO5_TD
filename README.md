@@ -31,3 +31,6 @@ que lo resuelva empleando todos los métodos de incertidumbre.
 ### Día 01/11/2022
 • Nueva versión de añadir la columna, mejorando la estética.<br>
 • Creación del documento vignette.<br>
+
+### Día 03/10/2022
+• Completamos la vignetta con lo que van documentando los integrantes del grupo.<br>
