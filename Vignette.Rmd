@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Funciones  incertidumbre"
+title: "Funciones  incertidumbre"
+author: "Ana Barroso Sánchez, Jesús Manuel Falcón García, Sebastián León Díaz, Sofía Muñoz Márquez, Cristina Tobar Fernández"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -73,81 +73,81 @@ criterio.tablaX.ejemplos(cual = 2)
 
 ### Criterio de Wald o pesimista
 
-En este criterio supondremos que para cada alternativa va a pasar lo
-peor.Elegiremos aquella alternativa que dé mejor valor. Aseguramos que
-en el peor de los casos escogemos lo mejor.
+*En este criterio supondremos que para cada alternativa va a pasar lo
+peor. Elegiremos aquella alternativa que dé mejor valor. Aseguramos que
+en el peor de los casos escogemos lo mejor.*
 
 **criterio.Wald(tablaX,favorable=TRUE)**
 
 ### Criterio Optimista
 
+*En este criterio supondremos que para cada alternativa va a pasar lo
+mejor. Elegiremos aquella alternativa que dé mejor valor. Suponemos que
+dado el mejor de los casos, obtenemos lo mejor*
+
 **criterio.Optimista(tablaX,favorable=TRUE)**
 
 ### Criterio de Hurwicz
 
-Esta función aplica el Criterio de Hurwich. Dicho criterio combina
+*Esta función aplica el Criterio de Hurwich. Dicho criterio combina
 actitudes pesimistas y optimistas. Pondera la mejor opción por un
 "factor de optimismo" alfa. La dificultad de este método está en estimar
 el alfa del decisor. Por ello y como veremos más adelante, se ha
-introducido este factor como dato dado (o de entrada)
+introducido este factor como dato dado (o de entrada)*
 
-ENTRADA:------------------------------------------------------------------------------------------------------------------------
+**criterio.Hurwicz(tablaX,alfa=0.3,favorable=TRUE)**
 
-tablaX: Matriz donde se exponen, por filas, los "beneficios" o "costes"
-de
+-   *ENTRADA:*
 
-cada decisión, según la alternativa.
+    -   [tablaX:]{.underline} Matriz donde se exponen, por filas, los
+        "beneficios" o "costes" de cada decisión, según la alternativa.
 
-alfa: Es un escalar entre 0 y 1. Es el grado de optimismo que tenemos a
-la
+    -   [alfa:]{.underline} Es un escalar entre 0 y 1. Es el grado de
+        optimismo que tenemos a la hora de decidir.
 
-hora de decidir
+    -   [favorable:]{.underline} Booleano. TRUE si es una matriz de
+        beneficios, FALSE si lo es de costes.
 
-favorable: Booleano. TRUE si es una matriz de beneficios, FALSE si lo es
+-   *SALIDA:* La función nos devuelve una lista, con:
 
-de costes
+    -   [criterio:]{.underline} En este caso siempre nos devolverá
+        'Hurwicz'
 
-SALIDA:---------------------------------------------------------------------------------------------------------------------------
+    -   [alfa]{.underline}: El nivel parea el cual se ha aplicado el
+        criterio Hurwicz
 
-La función nos devuelve una lista, con:
+    -   [metodo:]{.underline} Si se ha tomado la matriz de entrada como
+        favorable(beneficios) como desfavorable (costes)
 
-criterio: En este caso siempre nos devolverá 'Hurwicz'
+    -   [tablaX:]{.underline} La matriz de entrada.
 
-alfa: El nivel parea el cual se ha aplicado el criterio Hurwicz
+    -   [ValorAlternativas:]{.underline} Valor asignado a cada
+        alternativa para nuestro nivel de optimismo
 
-metodo:Si se ha tomado la matriz de entrada como favorable(beneficios)
+    -   [ValorOptimo:]{.underline} Valor óptimo entre todas las
+        alternativas.
 
-o como desfavorable (costes)
+    -   [AlternativaOptima:]{.underline} Alternativa donde se alcanza
+        dicho valor óptimo.
 
-tablaX:La matriz de entrada.
-
-ValorAlternativas: Valor asignado a cada alternativa para nuestro nivel
-
-de optimismo
-
-ValorOptimo: Valor óptimo entre todas las alternativas.
-
-AlternativaOptima: Alternativa donde se alcanza dicho valor óptimo.
-
-**criterio.Hurwicz(tablaX,alfa=0.3,favorable=TRUE)
-criterio.Hurwicz.General(tablaX,alfa=0.3,favorable=TRUE)
+**criterio.Hurwicz.General(tablaX,alfa=0.3,favorable=TRUE)
 dibuja.criterio.Hurwicz(tablaX,favorable=TRUE)
 dibuja.criterio.Hurwicz_Intervalos(tablaX,favorable=TRUE,mostrarGrafico=TRUE)**
 
 ### Criterio de Savage
 
-Este criterio toma en consideración el coste de oportunidad o
+*Este criterio toma en consideración el coste de oportunidad o
 penalización o arrepentimietno por no prever correctamente el estado de
 la naturaleza. Estos costes de oportunidad se evaluarán para cada
 alternativa y cada estado, haciendo la diferencia entre lo mejor de ese
 estado y lo que proporciona esa alternativa para ese estado contruyendo
 una matriz de penalizaciones. -sobre esta matriz se aplicarán los
 criterios anteriores, el más habittual es el criterio minmax, criterio
-de minimizar el maximo arrepentimiento.
+de minimizar el maximo arrepentimiento.*
 
-En la práctica: en el caso de los costos calcula el mín por columnas
+*En la práctica: en el caso de los costos calcula el mín por columnas
 crea una matriz de penalizaciones a la que le aplicamos el metodo
-pesimista.
+pesimista.*
 
 **criterio.Savage(tablaX,favorable=TRUE)**
 
@@ -157,44 +157,42 @@ pesimista.
 
 ### Criterio del punto ideal
 
-Esta función aplica el Criterio del Punto Ideal. Dicho criterio mide la
+*Esta función aplica el Criterio del Punto Ideal. Dicho criterio mide la
 distancia entre el punto ideal (el que toma los mejores valores posibles
 en todas sus coordenadas) y los puntos definidos por nuestras
-alternativas.
+alternativas.*
 
 **criterio.PuntoIdeal(tablaX,favorable=TRUE)**
 
-ENTRADA:---------------------------------------------------------------------------------------------------------------------------
+-   ENTRADA:
 
-tablaX: Matriz donde se exponen, por filas, los "beneficios" o "costes"
-de
+    -   [tablaX:]{.underline} Matriz donde se exponen, por filas, los
+        "beneficios" o "costes" de cada decisión, según la alternativa.
 
-cada decisión, según la alternativa.
+    -   [favorable:]{.underline} Booleano. TRUE si es una matriz de
+        beneficios, FALSE si lo es de costes.
 
-favorable: Booleano. TRUE si es una matriz de beneficios, FALSE si lo es
-de costes
+-   SALIDA: La función nos devuelve una lista, con:
 
-SALIDA:---------------------------------------------------------------------------------------------------------------------------
+    -   [criterio:]{.underline} En este caso siempre nos devolverá
+        'Punto Ideal'
 
-La función nos devuelve una lista, con:
+    -   [metodo:]{.underline} Si se ha tomado la matriz de entrada como
+        favorable(beneficios) o como desfavorable (costes)
 
-criterio: En este caso siempre nos devolverá 'Punto Ideal'
+    -   [tablaX:]{.underline} La matriz de entrada.
 
-metodo:Si se ha tomado la matriz de entrada como favorable(beneficios) o
-como desfavorable (costes)
+    -   [Mejores:]{.underline} Las coordenadas de nuestro Punto Ideal.
 
-tablaX:La matriz de entrada.
+    -   [ValorAlternativas:]{.underline} Distancia de cada alternativa a
+        nuestro punto ideal.
 
-Mejores:Las coordenadas de nuestro Punto Ideal.
+    -   [ValorOptimo:]{.underline} Minima distancia o valor óptimo entre
+        todas las alternativas.
 
-ValorAlternativas: Distancia de cada alternativa a nuestro punto ideal.
-
-ValorOptimo: Minima distancia o valor óptimo entre todas las
-alternativas.
-
-AlternativaOptima: Alternativa más cercana al punto ideal,
-
-donde se alcanza dicho valor óptimo de las distancias.
+    -   [AlternativaOptima:]{.underline} Alternativa más cercana al
+        punto ideal, donde se alcanza dicho valor óptimo de las
+        distancias.
 
 ### Funciones resumen
 
@@ -202,3 +200,36 @@ donde se alcanza dicho valor óptimo de las distancias.
 criterio.Todos.mejorado(tablaX,alfa=0.3,favorable=TRUE)**
 
 ## EJEMPLOS
+
+En este apartado aplicaremos las funciones de nuestro paquete a
+diferentes tablas de valores de un problema de alternativas.
+
+```{r}
+# Creamos tabla
+tb1=crea.tablaX(c(380,	380,	380	,
+                  245,	580,	580 ,
+                  450,	500,	450	),numalternativas = 3, numestados = 3)
+
+# Funciones de criterios 
+# Wald
+criterio.Wald(tb1,favorable = F)
+# Optimista
+criterio.Optimista(tb1,favorable = F)
+# Hurwicz
+dibuja.criterio.Hurwicz(tb1,favorable = F)
+dibuja.criterio.Hurwicz_Intervalos(tb1,favorable = F,mostrarGrafico = F)
+dibuja.criterio.Hurwicz_Intervalos(tb1,favorable = F)
+
+criterio.Hurwicz(tb1,alfa=0.597,favorable = F)
+
+criterio.Laplace(tb1,favorable = F)
+
+criterio.Savage(tb1,favorable = F)
+
+criterio.PuntoIdeal(tb1,favorable = F)
+
+
+criterio.Todos(tb1,alfa=0.597,favorable = F)
+
+criterio.Todos.mejorado(tb1,alfa=0.597,favorable = F)
+```
