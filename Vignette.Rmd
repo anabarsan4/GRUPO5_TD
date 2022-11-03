@@ -5,8 +5,11 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include = FALSE}
@@ -16,50 +19,186 @@ knitr::opts_chunk$set(
 )
 ```
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
-
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
-
-## Vignette InfoRMACIÓN
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r}
+source("teoriadecision_funciones_incertidumbre.R")
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+## INFORMACIÓN DEL PAQUETE
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
+En el presente documento explicaremos brevemente el uso y el fin de
+diferentes funciones en el ambito de la Teoria de la Decisión. Nuestro
+problema inicial es la toma de una decisión entre un conjunto de
+alternativas. Suponemos un sólo criterio de decisión, en base al cual,
+teniendo en cuenta los distintos estados de la naturaleza posibles,
+debemos elegir una decisión óptima.
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+La idea es implementar distintos métodos que nos ayuden a clarecer la
+decisión final.
 
-## More Examples
+## INDICE DE FUNCIONES
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+### Funciones auxiliares
 
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+**crea.tablaX(vector_matporfilas,numalternativas=3,numestados=4)**
+
+```{r}
+crea.tablaX(c(1,2,3,4),numalternativas=2,numestados=2)
 ```
 
-Also a quote using `>`:
+**which.min.general(vector)**
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+```{r}
+which.min(c(1,2,3,1))
+which.min.general(c(1,2,3,1))
+```
+
+**which.max.general(vector)**
+
+```{r}
+which.min(c(1,2,3,3))
+which.min.general(c(1,2,3,3))
+```
+
+**distanciaEuclidea(pto1,pto2)**
+
+```{r}
+distanciaEuclidea(c(1,2,1,3),c(1,2,3,3))
+```
+
+**criterio.tablaX.ejemplos(cual=1)**
+
+```{r}
+criterio.tablaX.ejemplos(cual = 2)
+```
+
+### Criterio de Wald o pesimista
+
+En este criterio supondremos que para cada alternativa va a pasar lo
+peor.Elegiremos aquella alternativa que dé mejor valor. Aseguramos que
+en el peor de los casos escogemos lo mejor.
+
+**criterio.Wald(tablaX,favorable=TRUE)**
+
+### Criterio Optimista
+
+**criterio.Optimista(tablaX,favorable=TRUE)**
+
+### Criterio de Hurwicz
+
+Esta función aplica el Criterio de Hurwich. Dicho criterio combina
+actitudes pesimistas y optimistas. Pondera la mejor opción por un
+"factor de optimismo" alfa. La dificultad de este método está en estimar
+el alfa del decisor. Por ello y como veremos más adelante, se ha
+introducido este factor como dato dado (o de entrada)
+
+ENTRADA:------------------------------------------------------------------------------------------------------------------------
+
+tablaX: Matriz donde se exponen, por filas, los "beneficios" o "costes"
+de
+
+cada decisión, según la alternativa.
+
+alfa: Es un escalar entre 0 y 1. Es el grado de optimismo que tenemos a
+la
+
+hora de decidir
+
+favorable: Booleano. TRUE si es una matriz de beneficios, FALSE si lo es
+
+de costes
+
+SALIDA:---------------------------------------------------------------------------------------------------------------------------
+
+La función nos devuelve una lista, con:
+
+criterio: En este caso siempre nos devolverá 'Hurwicz'
+
+alfa: El nivel parea el cual se ha aplicado el criterio Hurwicz
+
+metodo:Si se ha tomado la matriz de entrada como favorable(beneficios)
+
+o como desfavorable (costes)
+
+tablaX:La matriz de entrada.
+
+ValorAlternativas: Valor asignado a cada alternativa para nuestro nivel
+
+de optimismo
+
+ValorOptimo: Valor óptimo entre todas las alternativas.
+
+AlternativaOptima: Alternativa donde se alcanza dicho valor óptimo.
+
+**criterio.Hurwicz(tablaX,alfa=0.3,favorable=TRUE)
+criterio.Hurwicz.General(tablaX,alfa=0.3,favorable=TRUE)
+dibuja.criterio.Hurwicz(tablaX,favorable=TRUE)
+dibuja.criterio.Hurwicz_Intervalos(tablaX,favorable=TRUE,mostrarGrafico=TRUE)**
+
+### Criterio de Savage
+
+Este criterio toma en consideración el coste de oportunidad o
+penalización o arrepentimietno por no prever correctamente el estado de
+la naturaleza. Estos costes de oportunidad se evaluarán para cada
+alternativa y cada estado, haciendo la diferencia entre lo mejor de ese
+estado y lo que proporciona esa alternativa para ese estado contruyendo
+una matriz de penalizaciones. -sobre esta matriz se aplicarán los
+criterios anteriores, el más habittual es el criterio minmax, criterio
+de minimizar el maximo arrepentimiento.
+
+En la práctica: en el caso de los costos calcula el mín por columnas
+crea una matriz de penalizaciones a la que le aplicamos el metodo
+pesimista.
+
+**criterio.Savage(tablaX,favorable=TRUE)**
+
+### Criterio de Laplace
+
+**criterio.Laplace(tablaX,favorable=TRUE)**
+
+### Criterio del punto ideal
+
+Esta función aplica el Criterio del Punto Ideal. Dicho criterio mide la
+distancia entre el punto ideal (el que toma los mejores valores posibles
+en todas sus coordenadas) y los puntos definidos por nuestras
+alternativas.
+
+**criterio.PuntoIdeal(tablaX,favorable=TRUE)**
+
+ENTRADA:---------------------------------------------------------------------------------------------------------------------------
+
+tablaX: Matriz donde se exponen, por filas, los "beneficios" o "costes"
+de
+
+cada decisión, según la alternativa.
+
+favorable: Booleano. TRUE si es una matriz de beneficios, FALSE si lo es
+de costes
+
+SALIDA:---------------------------------------------------------------------------------------------------------------------------
+
+La función nos devuelve una lista, con:
+
+criterio: En este caso siempre nos devolverá 'Punto Ideal'
+
+metodo:Si se ha tomado la matriz de entrada como favorable(beneficios) o
+como desfavorable (costes)
+
+tablaX:La matriz de entrada.
+
+Mejores:Las coordenadas de nuestro Punto Ideal.
+
+ValorAlternativas: Distancia de cada alternativa a nuestro punto ideal.
+
+ValorOptimo: Minima distancia o valor óptimo entre todas las
+alternativas.
+
+AlternativaOptima: Alternativa más cercana al punto ideal,
+
+donde se alcanza dicho valor óptimo de las distancias.
+
+### Funciones resumen
+
+**criterio.Todos(tablaX,alfa=0.3,favorable=TRUE)
+criterio.Todos.mejorado(tablaX,alfa=0.3,favorable=TRUE)**
+
+## EJEMPLOS
