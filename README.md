@@ -14,6 +14,8 @@
 • Cada miembro del grupo tendrá que crear un enunciado diferente de un problema en el
 que lo resuelva empleando todos los métodos de incertidumbre.
 ## DIARIO DE TRABAJO:
+### Día 10/10/2022
+• **Cristina Tobar Fernández**: Subo la primera versión de mi enunciado.
 ### Día 11/10/2022
 **Quedamos tras la clase para organizarnos.** <br>
 • Mandamos un correo al profesor para saber exactamente qué hacer.<br>
