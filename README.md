@@ -26,11 +26,14 @@ que lo resuelva empleando todos los métodos de incertidumbre.
     • **Sofía Muñoz Márquez :**   "criterio de Wald"            "criterio Savage" <br>
     
 ### Día 29/10/2022
-• Primera versión de añadir la columna de la mejor opción teniendo en cuenta todos los criterios.
+• **Cristina Tobar Fernández**: Primera versión de añadir la columna de la mejor opción teniendo en cuenta todos los criterios.
     
 ### Día 01/11/2022
-• Nueva versión de añadir la columna, mejorando la estética.<br>
-• Creación del documento vignette.<br>
+• **Cristina Tobar Fernández**: Nueva versión de añadir la columna, mejorando la estética.<br>
+• **Cristina Tobar Fernández**: Creación del documento vignette.<br>
 
 ### Día 03/10/2022
-• Completamos la vignetta con lo que van documentando los integrantes del grupo.<br>
+• **Cristina Tobar Fernández**: Completo la vignetta con lo que van documentando los integrantes del grupo.<br>
+### Día 03/10/2022
+• **Sofía Muñoz Márquez**: Completo la vignetta. <br>
+
