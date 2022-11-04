@@ -36,6 +36,7 @@ que lo resuelva empleando todos los métodos de incertidumbre.
 
 ### Día 03/10/2022
 • **Cristina Tobar Fernández**: Completo la vignetta con lo que van documentando los integrantes del grupo.<br>
-### Día 03/10/2022
+
+### Día 04/10/2022
 • **Sofía Muñoz Márquez**: Completo la vignetta. <br>
 
