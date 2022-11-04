@@ -79,6 +79,31 @@ en el peor de los casos escogemos lo mejor.*
 
 **criterio.Wald(tablaX,favorable=TRUE)**
 
+-   *ENTRADA:*
+
+    -   [tablaX:]{.underline} Matriz donde se ponen los
+        "beneficios" o "costes" dependiendo de la alternativa por filas.
+
+    -   [favorable:]{.underline} TRUE si es una matriz de
+        beneficios, FALSE si lo es de costes.
+
+-   *SALIDA:* La función nos devuelve una lista, con:
+
+    -   [criterio:]{.underline} En este caso siempre nos devolverá
+        'Wald' ya que se trata de nuestro criterio a estudiar
+
+    -   [metodo:]{.underline} favorable o desfavorable, dependerá si se ha cogido al principio la matriz de         beneficio o costos.
+
+    -   [tablaX:]{.underline} La matriz de entrada.
+
+    -   [ValorAlternativas:]{.underline} Mínimos y máximos
+
+    -   [ValorOptimo:]{.underline} Valor óptimo entre todas las
+        alternativas.
+
+    -   [AlternativaOptima:]{.underline} Alternativa con valor óptimo.
+
+
 ### Criterio Optimista
 
 *En este criterio supondremos que para cada alternativa va a pasar lo
@@ -150,6 +175,32 @@ crea una matriz de penalizaciones a la que le aplicamos el metodo
 pesimista.*
 
 **criterio.Savage(tablaX,favorable=TRUE)**
+
+-   *ENTRADA:*
+
+    -   [tablaX:]{.underline} Matriz donde se ponen los
+        "beneficios" o "costes" dependiendo de la alternativa por filas.
+
+    -   [favorable:]{.underline} TRUE si es una matriz de
+        beneficios, FALSE si lo es de costes.
+
+-   *SALIDA:* La función nos devuelve una lista, con:
+
+    -   [criterio:]{.underline} En este caso siempre nos devolverá
+        'Savage' ya que se trata de nuestro criterio a estudiar
+
+    -   [metodo:]{.underline} favorable o desfavorable, dependerá si se ha cogido al principio la matriz de         beneficio o costos.
+
+    -   [tablaX:]{.underline} La matriz de entrada.
+    
+    -   [Pesos:]{.underline} Pesos que le asignamos.
+    
+    -   [ValorAlternativas:]{.underline} Mínimos y máximos
+
+    -   [ValorOptimo:]{.underline} Valor óptimo entre todas las
+        alternativas.
+
+    -   [AlternativaOptima:]{.underline} Alternativa con valor óptimo.
 
 ### Criterio de Laplace
 

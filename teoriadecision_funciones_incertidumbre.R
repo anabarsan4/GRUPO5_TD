@@ -65,6 +65,29 @@ criterio.tablaX.ejemplos = function(cual=1) {
 #Elegiremos aquella alternativa que dé mejor valor.
 #Aseguramos que en el peor de los casos escogemos lo mejor.
 
+################ENTRADA:
+  
+#  -tablaX: Matriz donde se ponen los
+#"beneficios" o "costes" dependiendo de la alternativa por filas.
+
+# -favorable: TRUE si es una matriz de
+# beneficios, FALSE si lo es de costes.
+
+################SALIDA: La función nos devuelve una lista, con:
+  
+  # -criterio: En este caso siempre nos devolverá
+# 'Wald' ya que se trata de nuestro criterio a estudiar
+
+# - metodo:favorable o desfavorable, dependerá si se ha cogido al principio la matriz de         beneficio o costos.
+
+# -tablaX:La matriz de entrada.
+
+# -ValorAlternativas: Mínimos y máximos
+
+# -ValorOptimo:Valor óptimo entre todas las alternativas.
+
+# -AlternativaOptima: Alternativa con valor óptimo.
+
 criterio.Wald = function(tablaX,favorable=TRUE) {
   
   X = tablaX;
@@ -449,6 +472,33 @@ dibuja.criterio.Hurwicz_Intervalos = function(tablaX,favorable=TRUE,mostrarGrafi
 #En la práctica:
 # en el caso de los costos calcula el mín por columnas
 # crea una matriz de penalizaciones a la que le aplicamos el metodo pesimista
+
+################ENTRADA:
+
+#  -tablaX: Matriz donde se ponen los
+#"beneficios" o "costes" dependiendo de la alternativa por filas.
+
+# -favorable: TRUE si es una matriz de
+# beneficios, FALSE si lo es de costes.
+
+################SALIDA: La función nos devuelve una lista, con:
+
+# -criterio: En este caso siempre nos devolverá
+# 'Savage' ya que se trata de nuestro criterio a estudiar
+
+# - metodo:favorable o desfavorable, dependerá si se ha cogido al principio la matriz de         beneficio o costos.
+
+#  -Pesos: Pesos que le asignamos
+
+# -tablaX:La matriz de entrada.
+
+# -ValorAlternativas: Mínimos y máximos
+
+# -ValorOptimo:Valor óptimo entre todas las alternativas.
+
+# -AlternativaOptima: Alternativa con valor óptimo.
+
+
 criterio.Savage = function(tablaX,favorable=TRUE) {
 
   X = tablaX;
