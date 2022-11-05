@@ -22,7 +22,7 @@ que lo resuelva empleando todos los métodos de incertidumbre.
 ### Día 13/10/2022
 • Repartimos de manera equitativa e individual las funciones del fichero para documentarlas.<br>
     • **Cristina Tobar Fernández :** "criterio.Hurwicz" "criterio.PuntoIdeal"<br>
-    • **Ana Barroso Sánchez :**              <br>
+    • **Ana Barroso Sánchez :** "criterio.Optimista" "criterio.Laplace" <br>
     • **Jesús Manuel Falcón García :**       <br>
     • **Sebastián León Díaz :**              <br>
     • **Sofía Muñoz Márquez :**   "criterio de Wald"            "criterio Savage" <br>
