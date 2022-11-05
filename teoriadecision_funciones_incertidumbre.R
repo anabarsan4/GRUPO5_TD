@@ -666,6 +666,37 @@ criterio.Laplace = function(tablaX,favorable=TRUE) {
 
 }
 
+#########Criterio Laplace 2 ########################
+criterio.Laplace2 = function(tablaX,favorable=TRUE) {
+  require(knitr)
+  
+  X = tablaX;
+  if (favorable) {
+    AltL = apply(X,MARGIN=1,mean);
+    Laplace = max(AltL) # favorable
+    Alt_Laplace = which.max.general(AltL)
+    metodo = 'favorable';
+  } else {
+    AltL = apply(X,MARGIN=1,mean);
+    Laplace = min(AltL) # desfavorable
+    Alt_Laplace = which.min.general(AltL)
+    metodo = 'desfavorable';
+  }
+  resultados = list();
+  resultados$criterio = array(c('Laplace',metodo),dimnames=list(c('Criterio','Metodo')));
+  resultados$TablaDecision = knitr::kable(tablaX,caption="Tabla de decisión");
+  resultados$Resultados_decision = AltL;
+  resultados_visibles = list();
+  resultados$DecisionOpt = array(c(names(Alt_Laplace),Laplace),dimnames=list(c('AltOpt','ValorOpt')));
+  
+  return(resultados);
+  
+}
+
+#NOTA: Se aplica nombres más directos a las listas. Uso de knitr en la
+#presentación de la tabla de decisión. 
+####################################################
+
 
 
 criterio.PuntoIdeal = function(tablaX,favorable=TRUE) {

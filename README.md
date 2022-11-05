@@ -24,7 +24,7 @@ que lo resuelva empleando todos los métodos de incertidumbre.
     • **Cristina Tobar Fernández :** "criterio.Hurwicz" "criterio.PuntoIdeal"<br>
     • **Ana Barroso Sánchez :** "criterio.Optimista" "criterio.Laplace"              <br>
     • **Jesús Manuel Falcón García :** "criterio.Hurwicz.general" "criterio.Todos"    <br>
-    • **Sebastián León Díaz :**              <br>
+    • **Sebastián León Díaz :**  "criterio.Laplace" "criterio.Wald"            <br>
     • **Sofía Muñoz Márquez :**   "criterio de Wald"            "criterio Savage" <br>
     
 ### Día 29/10/2022
@@ -40,4 +40,6 @@ que lo resuelva empleando todos los métodos de incertidumbre.
 ### Día 04/10/2022
 • **Sofía Muñoz Márquez**: Completo la vignetta. <br>
 • **Ana Barroso Sánchez**: Subo la primera versión de mi enunciado.
+### Día 05/11/2022
+• **Sebastián León Díaz**: Enunciado del problema, solución con Laplace y Wald, propuesta de cambios en el output del criterio.laplace, completo la Vignette <br> 
 

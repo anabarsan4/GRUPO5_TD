@@ -32,7 +32,7 @@ alternativas. Suponemos un sólo criterio de decisión, en base al cual,
 teniendo en cuenta los distintos estados de la naturaleza posibles,
 debemos elegir una decisión óptima.
 
-La idea es implementar distintos métodos que nos ayuden a clarecer la
+La idea es implementar distintos métodos que nos ayuden a esclarecer la
 decisión final.
 
 ## INDICE DE FUNCIONES
@@ -42,8 +42,20 @@ decisión final.
 **crea.tablaX(vector_matporfilas,numalternativas=3,numestados=4)**
 
 ```{r}
-crea.tablaX(c(1,2,3,4),numalternativas=2,numestados=2)
+crea.tablaX(data,numalternativas,numestados)
 ```
+
+-   *Descripción:* Crea una matriz con tantas filas(n) por alternativas
+    y columnas(m) como estados.
+
+-   *Entrada*
+
+    -   [Data:]{.underline} vector con los datos de los estados por
+        alternativa.
+    -   [numalternativas:]{.underline} total de alternativas(n)
+    -   [numestados:]{.underline} total de estados(m)
+
+-   *Salida: matriz de decisión*
 
 **which.min.general(vector)**
 
@@ -81,18 +93,19 @@ en el peor de los casos escogemos lo mejor.*
 
 -   *ENTRADA:*
 
-    -   [tablaX:]{.underline} Matriz donde se ponen los
-        "beneficios" o "costes" dependiendo de la alternativa por filas.
+    -   [tablaX:]{.underline} Matriz donde se ponen los "beneficios" o
+        "costes" dependiendo de la alternativa por filas.
 
-    -   [favorable:]{.underline} TRUE si es una matriz de
-        beneficios, FALSE si lo es de costes.
+    -   [favorable:]{.underline} TRUE si es una matriz de beneficios,
+        FALSE si lo es de costes.
 
 -   *SALIDA:* La función nos devuelve una lista, con:
 
     -   [criterio:]{.underline} En este caso siempre nos devolverá
         'Wald' ya que se trata de nuestro criterio a estudiar
 
-    -   [metodo:]{.underline} favorable o desfavorable, dependerá si se ha cogido al principio la matriz de         beneficio o costos.
+    -   [metodo:]{.underline} favorable o desfavorable, dependerá si se
+        ha cogido al principio la matriz de beneficio o costos.
 
     -   [tablaX:]{.underline} La matriz de entrada.
 
@@ -103,14 +116,42 @@ en el peor de los casos escogemos lo mejor.*
 
     -   [AlternativaOptima:]{.underline} Alternativa con valor óptimo.
 
-
 ### Criterio Optimista
 
 *En este criterio supondremos que para cada alternativa va a pasar lo
 mejor. Elegiremos aquella alternativa que dé mejor valor. Suponemos que
 dado el mejor de los casos, obtenemos lo mejor*
 
-**criterio.Optimista(tablaX,favorable=TRUE)**
+**criterio.Optimista(tabla_decision,favorable={TRUE,FALSE})**
+
+-   *Descripción:*
+
+Devuelve la decisión mejor según el criterio MaxMax
+
+-   *ENTRADA*
+
+    -   tabla_decision: matriz con las alternativas, estados y valores
+
+    -   favorable: 'TRUE' si son beneficios, 'FALSE' si son costes
+
+```{=html}
+<!-- -->
+```
+-   SALIDA
+
+    -   [criterio:]{.underline} Optimista
+
+    -   [metodo:]{.underline} favorable (beneficios) o desfavorable
+        (costes)
+
+    -   [tablaX:]{.underline} Tabla de decisión.
+
+    -   [ValorAlternativas:]{.underline} valor máximo de cada
+        alternativa
+
+    -   [ValorOptimo:]{.underline} el valor MaxMax
+
+    -   [AlternativaOptima:]{.underline} la decisión a tomar
 
 ### Criterio de Hurwicz
 
@@ -156,8 +197,27 @@ introducido este factor como dato dado (o de entrada)*
         dicho valor óptimo.
 
 **criterio.Hurwicz.General(tablaX,alfa=0.3,favorable=TRUE)
-dibuja.criterio.Hurwicz(tablaX,favorable=TRUE)
-dibuja.criterio.Hurwicz_Intervalos(tablaX,favorable=TRUE,mostrarGrafico=TRUE)**
+dibuja.criterio.Hurwicz(tabla_decision,favorable={TRUE,FALSE})**
+
+-   *Descripción:*
+
+Devuelve el gráfico de la función alpha\**max+(1-alpha)*\*min
+(favorable=T) ó min\**max+(1-alpha)*\*min (favorable=F)
+
+-   *ENTRADA*
+
+    -   tabla_decision: matriz con las alternativas, estados y valores
+
+    -   favorable: 'TRUE' si son beneficios, 'FALSE' si son costes
+
+```{=html}
+<!-- -->
+```
+-   SALIDA
+
+    Plot con el valor Hurwicz de cada alternativa en función de alpha
+
+**dibuja.criterio.Hurwicz_Intervalos(tablaX,favorable=TRUE,mostrarGrafico=TRUE)**
 
 ### Criterio de Savage
 
@@ -178,23 +238,24 @@ pesimista.*
 
 -   *ENTRADA:*
 
-    -   [tablaX:]{.underline} Matriz donde se ponen los
-        "beneficios" o "costes" dependiendo de la alternativa por filas.
+    -   [tablaX:]{.underline} Matriz donde se ponen los "beneficios" o
+        "costes" dependiendo de la alternativa por filas.
 
-    -   [favorable:]{.underline} TRUE si es una matriz de
-        beneficios, FALSE si lo es de costes.
+    -   [favorable:]{.underline} TRUE si es una matriz de beneficios,
+        FALSE si lo es de costes.
 
 -   *SALIDA:* La función nos devuelve una lista, con:
 
     -   [criterio:]{.underline} En este caso siempre nos devolverá
         'Savage' ya que se trata de nuestro criterio a estudiar
 
-    -   [metodo:]{.underline} favorable o desfavorable, dependerá si se ha cogido al principio la matriz de         beneficio o costos.
+    -   [metodo:]{.underline} favorable o desfavorable, dependerá si se
+        ha cogido al principio la matriz de beneficio o costos.
 
     -   [tablaX:]{.underline} La matriz de entrada.
-    
+
     -   [Pesos:]{.underline} Pesos que le asignamos.
-    
+
     -   [ValorAlternativas:]{.underline} Mínimos y máximos
 
     -   [ValorOptimo:]{.underline} Valor óptimo entre todas las
@@ -204,7 +265,38 @@ pesimista.*
 
 ### Criterio de Laplace
 
-**criterio.Laplace(tablaX,favorable=TRUE)**
+Basado en el principio de razón insuficiente. Se considera que no hay
+razón para considerar que un estado es más probable, luego se asigna
+probabilidad 1/n a cada estado.
+
+**criterio.Laplace(tabla_decision,favorable={TRUE,FALSE})**
+
+-   *Descripción:*
+
+    Devuelve la mejor alternativa y su valor según el principio de razón
+    insuficiente.
+
+-   *Entrada*
+
+    -   [tabla_decision:]{.underline} matriz con los datos de las
+        alternativas y estados.
+    -   [favorable:]{.underline}'TRUE' si son beneficios, 'FALSE' si son
+        costes
+
+-   *Salida:*
+
+    -   [criterio:]{.underline} Laplace
+
+    -   [metodo:]{.underline} favorable (beneficios) o desfavorable
+        (costes)
+
+    -   [tablaX:]{.underline} Tabla de decisión.
+
+    -   [ValorAlternativas:]{.underline} valor medio de cada alternativa
+
+    -   [ValorOptimo:]{.underline} el máximo de los valores medios
+
+    -   [AlternativaOptima:]{.underline} la decisión a tomar
 
 ### Criterio del punto ideal
 
