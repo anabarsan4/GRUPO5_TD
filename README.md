@@ -39,4 +39,5 @@ que lo resuelva empleando todos los métodos de incertidumbre.
 
 ### Día 04/10/2022
 • **Sofía Muñoz Márquez**: Completo la vignetta. <br>
+• **Ana Barroso Sánchez**: Subo la primera versión de mi enunciado.
 
