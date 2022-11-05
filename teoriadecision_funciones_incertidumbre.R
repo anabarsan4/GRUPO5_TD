@@ -244,6 +244,42 @@ criterio.Hurwicz = function(tablaX,alfa=0.3,favorable=TRUE) {
 criterio.Hurwicz.General = function(tablaX,alfa=0.3,favorable=TRUE) {
   # si alfa es un escalar entre 0 y 1 lo obtiene para ese único valor
   # si alfa es igual a un número mayor que 1, lo usa para obtener cálculos para dividir el rango 0-1
+  #                         CRITERIO:
+  # Esta función realiza el Criterio de Hurwich general, el cual consiste en una generalización del visto antes.
+  # El fundamento de este criterio es que el decisor puede escoger una postura intermedia entre el pesimismo
+  # y el optimismo y cúan cerca de cada extremo desea estar mediante el coeficiente alfa, comprendido entre 0 y 1
+  # siendo el 1 completamente optimista y el 0 completamente pesimista
+  # La principal diferencia de esta función y la anterior es que en esta se contemplan dos casos, si el valor de alpha 
+  # es menor o igual a 1 o mayor que 1, y ambos casos se contemplan tanto si es favorable o como si es desfavorable, es decir, 
+  # esta función cambia (tanto si es matriz de costes como si es de beneficios) en función del valor del parámetro alfa
+  #
+  #                         ENTRADA: 
+  # En los datos que debemos introducirle a la función destacamos los siguientes:
+  #
+  #   tablaX -> matriz donde se registran los costes (o beneficios) por filas  
+  #          
+  #   alfa -> valor entre 0 y 1 que indica el grado de optimismo
+  #          
+  #   favorable -> TRUE o FALSE, TRUE para indicar que se trata de una matiz de beneficios y FALSE indica costes
+  #               
+  #                         SALIDA: 
+  #       En cuanto a lo que devuelve la función tenemos: (solo tiene una diferencia con respecto a la salida del
+  #       método de Hurwicz, que es que añade también el método; favorable o desfavorable)
+  #
+  #        $criterio: devuelve 'Hurwicz' aunque se trata de Hurwicz general
+  #
+  #        $alfa: el nivel introducido del parámetro
+  #
+  #        $metodo: devuelve "favorable" o "desfavorable", favorable si le ponemos TRUE y desfavorable si es FALSE
+  #
+  #        $tablaX: matriz con los datos de los que queremos obtener una decisión
+  #
+  #        $ValorAlternativas: valor para cada alternativa
+  #                          
+  #        $ValorOptimo: valor mejor u óptimo de todos los valores asignados a las alternativas
+  #
+  #        $AlternativaOptima: es la alternativa asociada al $ValorOptimo, es decir, es la mejor alternativa según el criterio y la que se debe elegir
+  ##############################################################################
   X = tablaX;
   if (favorable) {
     Altmin = apply(X,MARGIN=1,min);
@@ -692,20 +728,52 @@ criterio.PuntoIdeal = function(tablaX,favorable=TRUE) {
 }
 
 criterio.Todos = function(tablaX,alfa=0.3,favorable=TRUE) {
-
+  #                     CRITERIO:
+  # Esta función no se refiere a ningún criterio en concreto, sino que lo hace es un resumen de todos 
+  # los criterios anteriores, lo cual es muy útil porque así nos podemos hacer una idea
+  # de si hay alguna alternativa que sea la mejor en la mayoría de criterios, si es que la hay y 
+  # también para comparar los resultados con los diferentes criterios de manera fácil y rápida
+  #
+  #                     ENTRADA:
+  #        En este aspecto la función es como las demás:
+  #
+  #   tablaX -> matriz donde se registran los costes (o beneficios) por filas  
+  #          
+  #   alfa -> valor entre 0 y 1 que indica el grado de optimismo
+  #          
+  #   favorable -> TRUE o FALSE, TRUE para indicar que se trata de una matiz de beneficios y FALSE indica costes
+  #               
+  #                      SALIDA: 
+  #        Lo que devuelve esta función es una tabla, en el caso de que tuviéramos 4 alternativas 
+  #        y 3 estadoa de la naturaleza la tabla tendría la siguiente forma:
+  #
+  #                  e1 e2 e3 Wald Optimista Hurwicz Savage Laplace Punto Ideal
+  #            d1    5  4  6    4         6     4.8      4   5.000       4.123
+  #            d2    2  3  1    1         3     1.8      6   2.000       8.367
+  #            d3   -1  8  7   -1         8     2.6      6   4.667       6.000
+  #            d4    5  2  0    0         5     2.0      7   2.333       9.220
+  # iAlt.Opt (fav.) -- -- --   d1        d3      d1     d1      d1          d1
+  #
+  # Como vemos, en la tabla resultante tenemos la matriz de datos donde las alternativas están en las filas y las alternativas en las columnas
+  # Además, la función devuelve el valor de cada alternativa para cada criterio y en la última fila la alternativa donde se alcanza el valor óptimo
+  # en cada criterio
+  # En este caso concreto, se ve que la alternativa 1 es la que más veces sale como favorable, la 3 solo es escogida por el criterio Optimista y las 
+  # otras dos por ninguno
+  ##############################################################################
   cri01 = criterio.Wald(tablaX,favorable);
   cri02 = criterio.Optimista(tablaX,favorable);
   cri03 = criterio.Hurwicz(tablaX,alfa,favorable);
   cri04 = criterio.Savage(tablaX,favorable);
   cri05 = criterio.Laplace(tablaX,favorable);
   cri06 = criterio.PuntoIdeal(tablaX,favorable);
+  # aquí se hacen los criterios uno a uno
 
-  numestados = ncol(tablaX)
-  numalterna = nrow(tablaX)
+  numestados = ncol(tablaX) #el nº de estados que son las columnas
+  numalterna = nrow(tablaX) #el nº de alternativas que son las filas
 
   resultado = cbind(tablaX,cri01$ValorAlternativas,cri02$ValorAlternativas,
                     cri03$ValorAlternativas,cri04$ValorAlternativas,
-                    cri05$ValorAlternativas,cri06$ValorAlternativas);
+                    cri05$ValorAlternativas,cri06$ValorAlternativas); #aquí la función prepara en una tabla los datos de los criterios
 
   decopt = c(rep(NA,numestados),cri01$AlternativaOptima[1],
              cri02$AlternativaOptima[1],cri03$AlternativaOptima[1],
