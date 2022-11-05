@@ -121,24 +121,52 @@ criterio.Wald = function(tablaX,favorable=TRUE) {
 
 
 
-
+## Criterio Maximax u optimista
+# Este criterio es justamente el opuesto al anterior, 
+# para cada alternativa se supone que pasará lo mejor,
+# por tanto se elige la que dé el mejor valor.
+#
+################ ENTRADA:
+#
+# - tablaX: Matriz donde se ponen los "beneficios" o "costes" 
+# dependiendo de la alternativa por filas.
+#
+# - favorable: TRUE si es una matriz de beneficios, 
+# FALSE si lo es de costes.
+#
+################ SALIDA: La función nos devuelve una lista, con:
+#
+# - criterio: En este caso siempre nos devolverá
+# 'Optimista' ya que se trata del criterio a estudiar
+#
+# - metodo: favorable o desfavorable, dependerá si se ha cogido 
+# al principio la matriz de beneficio o costos.
+#
+# - tablaX: La matriz que hemos introducido
+#
+# - ValorAlternativas: Mínimos y máximos
+#
+# - ValorOptimo: Valor óptimo entre todas las alternativas.
+#
+# - AlternativaOptima: Alternativa con valor óptimo.
 
 criterio.Optimista = function(tablaX,favorable=TRUE) {
 
   X = tablaX;
-  if (favorable) {
-    AltM = apply(X,MARGIN=1,max);
+  if (favorable) {     ## si son beneficios
+    AltM = apply(X,MARGIN=1,max);   ## se calculan los máximos por filas
     ##AltM
-    Maximax = max(AltM);
+    Maximax = max(AltM);   ## nos quedamos con el máximo 
     Alt_Maximax = which.max.general(AltM);
     metodo = 'favorable';
-  } else {
-    AltM = apply(X,MARGIN=1,min);
+  } else {     ## si son beneficios
+    AltM = apply(X,MARGIN=1,min);   ## se calculan los mínimos por filas
     ##AltM
     Maximax = min(AltM);
     Alt_Maximax = which.min.general(AltM);
     metodo = 'desfavorable';
   }
+  ## lo que devuelve
   resultados = list();
   resultados$criterio = 'Optimista';
   resultados$metodo = metodo;
@@ -541,20 +569,55 @@ criterio.Savage = function(tablaX,favorable=TRUE) {
 
 
 
+## Criterio Laplace
+# Este método está basado en el principio de razón suficiente
+# Como a priori no existe ninguna razón para suponer que un estado
+# ocurre antes que otro, podemos considerar que todos ellos tienen 
+# la misma probabilidad de ocurrencia. De esta forma, para un problema 
+# de decisión con n posibles estados de la naturaleza, asignaríamos
+# probabilidad 1/n a cada uno de ellos. 
+# El criterio consiste en calcular la media de cada una de las filas 
+# de la matriz de valores numéricos y elegir la decisión que nos produzca mayor media.
+#
+################ ENTRADA:
+#
+# - tablaX: Matriz donde se ponen los "beneficios" o "costes" 
+# dependiendo de la alternativa por filas.
+#
+# - favorable: TRUE si es una matriz de beneficios, 
+# FALSE si lo es de costes.
+#
+################ SALIDA: La función nos devuelve una lista, con:
+#
+# - criterio: En este caso siempre nos devolverá
+# 'Laplace' ya que se trata del criterio a estudiar
+#
+# - metodo: favorable o desfavorable, dependerá si se ha cogido 
+# al principio la matriz de beneficio o costos.
+#
+# - tablaX: La matriz que hemos introducido
+#
+# - ValorAlternativas: Mínimos y máximos
+#
+# - ValorOptimo: Valor óptimo entre todas las alternativas.
+#
+# - AlternativaOptima: Alternativa con valor óptimo.
+
 criterio.Laplace = function(tablaX,favorable=TRUE) {
 
   X = tablaX;
-  if (favorable) {
+  if (favorable) {    ## si son beneficios
     AltL = apply(X,MARGIN=1,mean);
     Laplace = max(AltL) # favorable
     Alt_Laplace = which.max.general(AltL)
     metodo = 'favorable';
-  } else {
+  } else {    ## si son costos
     AltL = apply(X,MARGIN=1,mean);
     Laplace = min(AltL) # desfavorable
     Alt_Laplace = which.min.general(AltL)
     metodo = 'desfavorable';
   }
+  ## lo que devuelve
   resultados = list();
   resultados$criterio = 'Laplace';
   resultados$metodo = metodo;
