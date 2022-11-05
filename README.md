@@ -23,7 +23,7 @@ que lo resuelva empleando todos los métodos de incertidumbre.
 • Repartimos de manera equitativa e individual las funciones del fichero para documentarlas.<br>
     • **Cristina Tobar Fernández :** "criterio.Hurwicz" "criterio.PuntoIdeal"<br>
     • **Ana Barroso Sánchez :** "criterio.Optimista" "criterio.Laplace"              <br>
-    • **Jesús Manuel Falcón García :**    <br>
+    • **Jesús Manuel Falcón García :** "criterio.Hurwicz.general" "criterio.Todos"    <br>
     • **Sebastián León Díaz :**              <br>
     • **Sofía Muñoz Márquez :**   "criterio de Wald"            "criterio Savage" <br>
     
