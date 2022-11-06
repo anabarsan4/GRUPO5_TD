@@ -42,7 +42,7 @@ decisión final.
 **crea.tablaX(vector_matporfilas,numalternativas=3,numestados=4)**
 
 ```{r eval=FALSE}
-crea.tablaX(data,numalternativas,numestados)
+crea.tablaX(c(1,2,3,4,5,6,7,8,9),numalternativas=3,numestados=3)
 ```
 
 -   *Descripción:* Crea una matriz con tantas filas(n) por alternativas
