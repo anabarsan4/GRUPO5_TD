@@ -39,7 +39,10 @@ que lo resuelva empleando todos los métodos de incertidumbre.
 
 ### Día 04/10/2022
 • **Sofía Muñoz Márquez**: Completo la vignetta. <br>
-• **Ana Barroso Sánchez**: Subo la primera versión de mi enunciado.
-### Día 05/11/2022
-• **Sebastián León Díaz**: Enunciado del problema, solución con Laplace y Wald, propuesta de cambios en el output del criterio.laplace, completo la Vignette <br> 
+• **Ana Barroso Sánchez**: Subo la primera versión de mi enunciado.<br>
 
+### Día 05/11/2022
+• **Sebastián León Díaz**: Enunciado del problema, solución con Laplace y Wald, propuesta de cambios en el output del criterio.laplace, completo la Vignette. <br> 
+
+### Día 06/11/2022
+• **Ana Barroso Sánchez**: Completo la vignette <br>
