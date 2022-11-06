@@ -12,7 +12,7 @@
 
 <meta name="author" content="Ana Barroso Sánchez, Jesús Manuel Falcón García, Sebastián León Díaz, Sofía Muñoz Márquez, Cristina Tobar Fernández" />
 
-<meta name="date" content="2022-11-04" />
+<meta name="date" content="2022-11-06" />
 
 <title>Funciones incertidumbre</title>
 
@@ -566,7 +566,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Funciones incertidumbre</h1>
 <h4 class="author">Ana Barroso Sánchez, Jesús Manuel Falcón García,
 Sebastián León Díaz, Sofía Muñoz Márquez, Cristina Tobar Fernández</h4>
-<h4 class="date">2022-11-04</h4>
+<h4 class="date">2022-11-06</h4>
 
 
 
@@ -579,29 +579,64 @@ problema inicial es la toma de una decisión entre un conjunto de
 alternativas. Suponemos un sólo criterio de decisión, en base al cual,
 teniendo en cuenta los distintos estados de la naturaleza posibles,
 debemos elegir una decisión óptima.</p>
-<p>La idea es implementar distintos métodos que nos ayuden a clarecer la
-decisión final.</p>
+<p>La idea es implementar distintos métodos que nos ayuden a esclarecer
+la decisión final.</p>
 </div>
 <div id="indice-de-funciones" class="section level2">
 <h2>INDICE DE FUNCIONES</h2>
 <div id="funciones-auxiliares" class="section level3">
 <h3>Funciones auxiliares</h3>
 <p><strong>crea.tablaX(vector_matporfilas,numalternativas=3,numestados=4)</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crea.tablaX</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),<span class="at">numalternativas=</span><span class="dv">2</span>,<span class="at">numestados=</span><span class="dv">2</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    e1 e2</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; d1  1  2</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; d2  3  4</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crea.tablaX</span>(data,numalternativas,numestados)</span></code></pre></div>
+<ul>
+<li><p><em>Descripción:</em> Crea una matriz con tantas filas(n) por
+alternativas y columnas(m) como estados.</p></li>
+<li><p><em>Entrada</em></p>
+<ul>
+<li><u>Data:</u> vector con los datos de los estados por
+alternativa.</li>
+<li><u>numalternativas:</u> total de alternativas(n)</li>
+<li><u>numestados:</u> total de estados(m)</li>
+</ul></li>
+<li><p><em>Salida: matriz de decisión</em></p></li>
+</ul>
 <p><strong>which.min.general(vector)</strong></p>
+<ul>
+<li><p><em>Descripción:</em> Devuelve el mínimo de un vector</p></li>
+<li><p><em>Entrada</em></p>
+<ul>
+<li><u>Vector</u> vector con los datos</li>
+</ul></li>
+<li><p><em>Salida: posición en el vector del valor mínimo</em></p></li>
+</ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min.general</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 4</span></span></code></pre></div>
 <p><strong>which.max.general(vector)</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min.general</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
+<ul>
+<li><p><em>Descripción:</em> Devuelve el máximo de un vector</p></li>
+<li><p><em>Entrada</em></p>
+<ul>
+<li><u>Vector</u> vector con los datos</li>
+</ul></li>
+<li><p><em>Salida: posición en el vector del valor máximo</em></p></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max.general</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3 4</span></span></code></pre></div>
 <p><strong>distanciaEuclidea(pto1,pto2)</strong></p>
+<ul>
+<li><p><em>Descripción:</em> Calcula la distancia euclídea de dos
+vectores</p></li>
+<li><p><em>Entrada</em></p>
+<ul>
+<li><u>pto1</u> primer vector</li>
+<li><u>pto2</u> segundo vector</li>
+</ul></li>
+<li><p><em>Salida: distancia euclidea</em></p></li>
+</ul>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distanciaEuclidea</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>),<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
 <p><strong>criterio.tablaX.ejemplos(cual=1)</strong></p>
@@ -644,7 +679,34 @@ alternativas.</p></li>
 <p><em>En este criterio supondremos que para cada alternativa va a pasar
 lo mejor. Elegiremos aquella alternativa que dé mejor valor. Suponemos
 que dado el mejor de los casos, obtenemos lo mejor</em></p>
-<p><strong>criterio.Optimista(tablaX,favorable=TRUE)</strong></p>
+<p><strong>criterio.Optimista(tabla_decision,favorable={TRUE,FALSE})</strong></p>
+<ul>
+<li><em>Descripción:</em></li>
+</ul>
+<p>Devuelve la decisión mejor según el criterio MaxMax</p>
+<ul>
+<li><p><em>ENTRADA</em></p>
+<ul>
+<li><p>tabla_decision: matriz con las alternativas, estados y
+valores</p></li>
+<li><p>favorable: ‘TRUE’ si son beneficios, ‘FALSE’ si son
+costes</p></li>
+</ul></li>
+</ul>
+<!-- -->
+<ul>
+<li><p><em>SALIDA</em></p>
+<ul>
+<li><p><u>criterio:</u> Optimista</p></li>
+<li><p><u>metodo:</u> favorable (beneficios) o desfavorable
+(costes)</p></li>
+<li><p><u>tablaX:</u> Tabla de decisión.</p></li>
+<li><p><u>ValorAlternativas:</u> valor máximo de cada
+alternativa</p></li>
+<li><p><u>ValorOptimo:</u> el valor MaxMax</p></li>
+<li><p><u>AlternativaOptima:</u> la decisión a tomar</p></li>
+</ul></li>
+</ul>
 </div>
 <div id="criterio-de-hurwicz" class="section level3">
 <h3>Criterio de Hurwicz</h3>
@@ -682,8 +744,28 @@ valor óptimo.</p></li>
 </ul></li>
 </ul>
 <p><strong>criterio.Hurwicz.General(tablaX,alfa=0.3,favorable=TRUE)
-dibuja.criterio.Hurwicz(tablaX,favorable=TRUE)
-dibuja.criterio.Hurwicz_Intervalos(tablaX,favorable=TRUE,mostrarGrafico=TRUE)</strong></p>
+dibuja.criterio.Hurwicz(tabla_decision,favorable={TRUE,FALSE})</strong></p>
+<ul>
+<li><em>Descripción:</em></li>
+</ul>
+<p>Devuelve el gráfico de la función alpha*<em>max+(1-alpha)</em>*min
+(favorable=T) ó min*<em>max+(1-alpha)</em>*min (favorable=F)</p>
+<ul>
+<li><p><em>ENTRADA</em></p>
+<ul>
+<li><p>tabla_decision: matriz con las alternativas, estados y
+valores</p></li>
+<li><p>favorable: ‘TRUE’ si son beneficios, ‘FALSE’ si son
+costes</p></li>
+</ul></li>
+</ul>
+<!-- -->
+<ul>
+<li><p><em>SALIDA</em></p>
+<p>Plot con el valor Hurwicz de cada alternativa en función de
+alpha</p></li>
+</ul>
+<p><strong>dibuja.criterio.Hurwicz_Intervalos(tablaX,favorable=TRUE,mostrarGrafico=TRUE)</strong></p>
 </div>
 <div id="criterio-de-savage" class="section level3">
 <h3>Criterio de Savage</h3>
@@ -724,7 +806,33 @@ alternativas.</p></li>
 </div>
 <div id="criterio-de-laplace" class="section level3">
 <h3>Criterio de Laplace</h3>
-<p><strong>criterio.Laplace(tablaX,favorable=TRUE)</strong></p>
+<p>Basado en el principio de razón insuficiente. Se considera que no hay
+razón para considerar que un estado es más probable, luego se asigna
+probabilidad 1/n a cada estado.</p>
+<p><strong>criterio.Laplace(tabla_decision,favorable={TRUE,FALSE})</strong></p>
+<ul>
+<li><p><em>Descripción:</em></p>
+<p>Devuelve la mejor alternativa y su valor según el principio de razón
+insuficiente.</p></li>
+<li><p><em>ENTRADA</em></p>
+<ul>
+<li><u>tabla_decision:</u> matriz con los datos de las alternativas y
+estados.</li>
+<li><u>favorable:</u>‘TRUE’ si son beneficios, ‘FALSE’ si son
+costes</li>
+</ul></li>
+<li><p><em>SALIDA:</em></p>
+<ul>
+<li><p><u>criterio:</u> Laplace</p></li>
+<li><p><u>metodo:</u> favorable (beneficios) o desfavorable
+(costes)</p></li>
+<li><p><u>tablaX:</u> Tabla de decisión.</p></li>
+<li><p><u>ValorAlternativas:</u> valor medio de cada
+alternativa</p></li>
+<li><p><u>ValorOptimo:</u> el máximo de los valores medios</p></li>
+<li><p><u>AlternativaOptima:</u> la decisión a tomar</p></li>
+</ul></li>
+</ul>
 </div>
 <div id="criterio-del-punto-ideal" class="section level3">
 <h3>Criterio del punto ideal</h3>
@@ -734,14 +842,14 @@ posibles en todas sus coordenadas) y los puntos definidos por nuestras
 alternativas.</em></p>
 <p><strong>criterio.PuntoIdeal(tablaX,favorable=TRUE)</strong></p>
 <ul>
-<li><p>ENTRADA:</p>
+<li><p><em>ENTRADA:</em></p>
 <ul>
 <li><p><u>tablaX:</u> Matriz donde se exponen, por filas, los
 “beneficios” o “costes” de cada decisión, según la alternativa.</p></li>
 <li><p><u>favorable:</u> Booleano. TRUE si es una matriz de beneficios,
 FALSE si lo es de costes.</p></li>
 </ul></li>
-<li><p>SALIDA: La función nos devuelve una lista, con:</p>
+<li><p><em>SALIDA:</em> La función nos devuelve una lista, con:</p>
 <ul>
 <li><p><u>criterio:</u> En este caso siempre nos devolverá ‘Punto
 Ideal’</p></li>
